@@ -1,0 +1,10 @@
+Fields:
+  ID:
+    Primary: True
+    Readonly: True
+  Code:
+    SortOrder: 1
+  Name:
+    Default: True
+    SortOrder: 2
+Readonly: False

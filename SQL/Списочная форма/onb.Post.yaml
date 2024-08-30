@@ -1,0 +1,6 @@
+Columns:
+  Code:
+    Position: 0
+  Name:
+    Position: 1
+    Width: 184px
