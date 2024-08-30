@@ -15,7 +15,7 @@ create table [onb].[Employee] (
     [ID] int not null identity,
 	[Code] as 'E' + cast(ID as varchar(50)) persisted,
     [FullName] varchar(255) not null, 
-    [DateBirth] datetime not null, 
+    [DateBirth] date not null, 
     [DateEmployment] date null, 
     [DateDismissal] date null, 
     constraint [PK_Employee] primary key clustered ([ID])
