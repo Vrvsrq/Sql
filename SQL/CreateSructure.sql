@@ -39,23 +39,21 @@ alter table [onb].[Employee_Post]
 alter table [onb].[Employee_Post]
     add constraint [FK_Post_Employee_Post_ID_Post] foreign key ([ID_Post]) 
     references [onb].[Post]([ID]) on delete no action on update no action
-alter table [onb].[Employee_Post]
-    add constraint [UK_Employee_Post_ID_Employee] unique ([ID_Employee])
-alter table [onb].[Employee_Post]
-    add constraint [UK_Employee_Post_DateBegin] unique ([DateBegin]);
+alter table [onb].[Employee_Post] 
+    add constraint [UK_Employee_Post_ID_Employee_DateBegin] unique (ID_Employee, DateBegin);
 
 -- Создание таблицы "Заявления"
 
 create table [onb].[Statement] (
     [ID] int not null identity, 
-    [Дата] date not null, 
+    [DateRegistration] date not null, 
     [ID_Employee] int not null, 
-    [Content] varchar(2000) null, 
+    [Content] varchar(1200) null, 
     constraint [PK_Statement] primary key clustered ([ID])
 )
 alter table [onb].[Statement]
-    add constraint [FK_Employee_Statement_ID_Employee] foreign key ([ID_Employee]) 
-    references [onb].[Employee]([ID]) on delete no action on update no action;
+    add constraint [FK_Employee_Statement_ID_Employee] foreign key ([ID_Employee])
+    references [onb].[Employee]([ID]) on delete no action on update no action
 
 CREATE VIEW onb.viev_Employee AS 
 SELECT 
