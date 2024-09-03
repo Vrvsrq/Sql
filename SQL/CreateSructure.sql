@@ -55,16 +55,17 @@ create table [onb].[Statement] (
 )
 alter table [onb].[Statement]
     add constraint [FK_Employee_Statement_ID_Employee] foreign key ([ID_Employee]) 
-    references [onb].[Employee]([ID]) on delete no action on update no action
+    references [onb].[Employee]([ID]) on delete no action on update no action;
 
-
-    CREATE VIEW onb.viev_Employee AS 
+CREATE VIEW onb.viev_Employee AS 
 SELECT 
     ID, 
-    CASE 
+    CAST(CASE 
         WHEN COALESCE(DateEmployment, CAST(GETDATE() AS DATE)) <= CAST(GETDATE() AS DATE) 
-            AND (COALESCE(DateDismissal, '2100-01-01') > CAST(GETDATE() AS DATE)) 
-        THEN 1  -- Работает
-        ELSE 0   -- Не работает
-    END AS FlagWorking 
-FROM onb.Employee;
+             AND COALESCE(DateDismissal, '2100-01-01') > CAST(GETDATE() AS DATE) 
+        THEN 1 
+        ELSE 0 
+    END AS BIT) AS FlagWorking 
+FROM 
+    onb.Employee;
+   
